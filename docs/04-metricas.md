@@ -29,43 +29,47 @@ Crie testes simples para validar seu agente:
 ### Teste 1: Consulta de gastos
 - **Pergunta:** "Quanto gastei com alimentação?"
 - **Resposta esperada:** Valor baseado no `transacoes.csv`
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [X] Correto  [ ] Incorreto
 
 ### Teste 2: Recomendação de produto
 - **Pergunta:** "Qual investimento você recomenda para mim?"
 - **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [X] Correto  [ ] Incorreto
 
 ### Teste 3: Pergunta fora do escopo
 - **Pergunta:** "Qual a previsão do tempo?"
 - **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [X] Correto  [ ] Incorreto
 
 ### Teste 4: Informação inexistente
 - **Pergunta:** "Quanto rende o produto XYZ?"
 - **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [X] Correto  [ ] Incorreto
 
 ---
+
+## Formulário de feedback
+Use com os participantes do teste:
+
+| Métrica | Pergunta | Nota (1-5)|
+|---------|----------|-----------|
+| Assertividade | "A resposta respondeu sua pergunta?" | ___ |
+| Segurança | "As informações pareceram confiáveis?" | ___ |
+| Coerência | "A linguagem foi clara e fácil de entender?" | ___ |
+
 
 ## Resultados
 
 Após os testes, registre suas conclusões:
 
 **O que funcionou bem:**
-- [Liste aqui]
+- Integração de Dados: O sistema conseguiu carregar corretamente os arquivos CSV e JSON, permitindo que as consultas sobre o saldo e o perfil do cliente fossem respondidas com base nos dados reais.
+- Filtro de Escopo (Segurança): O agente demonstrou maturidade ao se recusar a responder perguntas fora do nicho financeiro (como a previsão do tempo), mantendo o papel de educador conforme definido no System Prompt.
+- Interface Didática: A estrutura do Streamlit tornou a interação amigável, facilitando o uso para testes rápidos.
 
 **O que pode melhorar:**
-- [Liste aqui]
+- Latência de Resposta: Com o modelo llama3:8b rodando localmente em uma máquina com 8GB de RAM, o tempo de resposta pode ser um pouco alto; seria ideal otimizar o prompt ou testar modelos ainda menores (como o phi3) se a velocidade for crítica.
+- Gestão de Contexto: Em conversas mais longas, o agente pode começar a esquecer o histórico de atendimento anterior; melhorar a forma como o historico_atendimento.csv é lido ou sumarizado pode ajudar.
+- Refinamento de Dados: As respostas sobre os produtos financeiros podem ser mais detalhadas se criarmos um prompt que incentive o agente a citar as regras de aporte mínimo descritas no arquivo produtos_financeiros.json.
 
 ---
-
-## Métricas Avançadas (Opcional)
-
-Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
-
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
-
-Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
